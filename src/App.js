@@ -8,17 +8,22 @@ export default function App() {
   const [guestList, setGuestlist] = useState([]);
 
 
-  function handleToggle({guest}){
-    setGuestlist([...guestList,guest.isAttending===true])
+     function handleToggle(id,attending){
+    //  setGuestlist([...guestList,guest.isAttending===true])
+    const newguestList=[...guestList];
+    console.log(newguestList);
+    const attendingGuest=newguestList.find((guest)=>guest.id===id)
+    attendingGuest.isAttending=attending;
+    console.log(attendingGuest);
+    console.log(attending);
+    // setGuestlist(newguestList)
 
   }
 
   function handleDelete(guest) {
     setGuestlist(guestList.filter((member) => member.id !== guest.id));}
 
-  //    useEffect(() => {
-  //   setGuestlist(" ");
-  // }, []);
+
 
   function handleSubmit() {
     const id = guestList.length + 1;
@@ -73,9 +78,16 @@ export default function App() {
             {guest.firstName} {guest.lastName}{' '}
             {guest.isAttending ? 'Attending' : 'Not Attending'}
             <button onClick={()=>handleDelete(guest)}>Delete</button>
-            <input type="checkbox"
+            <input type="checkbox" 
                    aria-label ={`${guest.firstName} ${guest.lastName} attending status`}
-                   onChange={handleToggle(guest)}>
+
+            onChange={()=>{
+              console.log("guestid",guest.id)
+
+              // handleToggle(guest.id,!guest.isAttending)
+              }}
+
+                  >
 
               </input>
           </div>
