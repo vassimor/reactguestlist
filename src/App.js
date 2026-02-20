@@ -8,7 +8,7 @@ export default function App() {
   const [guestList, setGuestlist] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const baseUrl = 'https://express-guest-list-api-memor-rppfmfj6w2ky.vassimor.deno.net/';
+  const baseUrl = 'https://express-guest-list-api-memor.vassimor.deno.net';
 
   async function handleToggle(id, isAttending) {
     const response = await fetch(`${baseUrl}/guests/${id}`, {
@@ -63,7 +63,7 @@ export default function App() {
     console.log('inside use effect', guestList);
     fetchGuests();
     console.log('after fetch', guestList);
-    setIsLoading(false)
+    setIsLoading(false);
   }, []);
 
   return (
@@ -78,14 +78,16 @@ export default function App() {
         }}
       >
         <label htmlFor="first">First Name</label>
-        <input disabled={isLoading}
+        <input
+          disabled={isLoading}
           type="text"
           id="first"
           value={firstName}
           onChange={(event) => setFirstName(event.currentTarget.value)}
         />
         <label htmlFor="last">Last Name</label>
-        <input disabled={isLoading}
+        <input
+          disabled={isLoading}
           type="text"
           value={lastName}
           id="last"
